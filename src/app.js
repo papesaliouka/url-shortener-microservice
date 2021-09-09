@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
+
 
 const urlRouter = require('./routes/url.route')
 
@@ -11,6 +13,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json())
+app.use(morgan('combined'))
 app.use('/public', express.static(path.join(__dirname, '..', '/public')));
 
 app.get('/', function(req, res) {
